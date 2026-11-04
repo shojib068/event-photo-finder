@@ -1,0 +1,18 @@
+# systemd unit for the always-on free VM (see docs/deploy-free-vm.md).
+# Install: sudo cp scripts/wedding.service /etc/systemd/system/ && sudo systemctl enable --now wedding
+# Edit User and WorkingDirectory if your username or path differ.
+[Unit]
+Description=Wedding face-search (postgres, tunnel, face-service, worker, web)
+After=network-online.target docker.service
+Wants=network-online.target
+Requires=docker.service
+
+[Service]
+User=ubuntu
+WorkingDirectory=/home/ubuntu/Wedding
+ExecStart=/usr/bin/npm run local -- --prod
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,47 @@
+{
+  "name": "event-photo-finder",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "npm run events:validate && npm run models:copy && tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "index": "tsx --env-file-if-exists=.env tools/indexer/cli.ts",
+    "qr": "tsx --env-file-if-exists=.env tools/qr/cli.ts",
+    "events:validate": "tsx tools/events/cli.ts",
+    "models:copy": "node tools/models/copy-models.mjs",
+    "test": "vitest run",
+    "lint": "eslint . && tsc --noEmit"
+  },
+  "dependencies": {
+    "@vladmandic/human": "3.3.6",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.28.0",
+    "@tailwindcss/vite": "^4.1.0",
+    "@tensorflow/tfjs": "^4.22.0",
+    "@tensorflow/tfjs-backend-wasm": "^4.22.0",
+    "@types/node": "^22.15.0",
+    "@types/qrcode": "^1.5.5",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "eslint": "^9.28.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "google-auth-library": "^10.0.0",
+    "qrcode": "^1.5.4",
+    "sharp": "^0.34.2",
+    "tailwindcss": "^4.1.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.8.0",
+    "typescript-eslint": "^8.33.0",
+    "vite": "^7.0.0",
+    "vitest": "^3.2.0"
+  }
+}

@@ -1,0 +1,17 @@
+import { writeFileSync, mkdirSync } from 'node:fs';
+import { getServiceAccount, loadDotEnv } from '../../src/core/config/node';
+import { buildEventIndex } from './build-index';
+import { DriveClient } from './drive-client';
+import { createNodeFaceEngine } from './node-face-engine';
+import { buildPublicMeta } from '../events/public-meta';
+loadDotEnv();
+const event = { id: 'e2e-test', name: 'E2E Test', folderId: '1xNVdwzRLOast6BUXnopaw7_OjIKU71un', indexPath: '/indexes/e2e-test.json' };
+const secret = process.env.E2E_SECRET!;
+const t0 = Date.now();
+await buildEventIndex(event, { drive: new DriveClient(getServiceAccount()), engine: await createNodeFaceEngine(), secret }, { full: false });
+console.log('first run s', (Date.now() - t0) / 1000);
+const t1 = Date.now();
+await buildEventIndex(event, { drive: new DriveClient(getServiceAccount()), engine: await createNodeFaceEngine(), secret }, { full: false });
+console.log('incremental run s', (Date.now() - t1) / 1000);
+mkdirSync('public/events', { recursive: true });
+writeFileSync('public/events/e2e-test.json', JSON.stringify(buildPublicMeta(event)));

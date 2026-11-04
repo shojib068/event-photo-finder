@@ -1,0 +1,10 @@
+{
+  "events": [
+    {
+      "id": "event-01",
+      "name": "mine",
+      "folderId": "https://drive.google.com/drive/folders/1VCVf5oLbXW_ocEC2RdbITO5XHlXZ2AJ4?usp=drive_link",
+      "indexPath": "/indexes/event-01.json"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+node_modules/
+dist/
+.cache/
+.logs/
+.env
+.env.*
+!.env.example
+.dev.vars
+secrets/
+*.tsbuildinfo
+.wrangler/
+# generated at build time
+public/models/
+public/events/
+# old v1 python env
+legacy-v1/face-service/.venv/
+__pycache__/
